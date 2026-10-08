@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Selamat Ulang Tahun!</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600;1,800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff5c8a;--cream:#fff4e3;--gold:#ffc94d;--ff-h:'Fraunces',Georgia,serif;--ff-b:'Nunito',system-ui,sans-serif;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:var(--ff-b);color:var(--cream);overflow:hidden;
+background:radial-gradient(circle at 15% 20%,#fff 0 1px,transparent 2px),radial-gradient(circle at 80% 12%,#fff 0 1.5px,transparent 2.5px),
+radial-gradient(circle at 60% 35%,#ffe9a8 0 1px,transparent 2px),radial-gradient(circle at 30% 50%,#fff 0 1px,transparent 2px),
+radial-gradient(circle at 90% 55%,#fff 0 1px,transparent 2px),radial-gradient(ellipse at 50% 100%,#8a2d6b 0,transparent 60%),linear-gradient(#1d0b2e,#4a1a5c)}
+main{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;padding:1rem 1rem calc(min(3.6vw,18px)*19);text-align:center}
+h1{position:relative;z-index:4;font-family:var(--ff-h);font-style:italic;font-weight:800;font-size:clamp(1.9rem,8vw,3.4rem);line-height:1.1;text-shadow:0 3px 20px #ff5c8a88}
+.who{display:block;margin:.3rem auto 0;width:min(78vw,18ch);background:none;border:0;border-bottom:2px dashed var(--gold);color:var(--gold);font:inherit;font-size:.85em;text-align:center;padding:.1em 0}
+.who:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
+.hint{position:relative;z-index:4;font-size:.95rem;opacity:.9}
+
+/* ===== Kado ===== */
+.gift{--u:clamp(13px,4.4vw,19px);font-size:var(--u);position:relative;width:11em;height:9.5em;border:0;background:none;cursor:pointer;animation:bob 2.2s ease-in-out infinite}
+.gift:focus-visible{outline:3px solid var(--gold);outline-offset:8px;border-radius:.6em}
+.shadow{position:absolute;left:1em;bottom:-.9em;width:9em;height:1.2em;border-radius:50%;background:#0006;filter:blur(.4em)}
+.rays{position:absolute;left:50%;top:1.5em;width:26em;height:26em;margin:-13em 0 0 -13em;border-radius:50%;opacity:0;pointer-events:none;
+background:repeating-conic-gradient(#fff2a8aa 0 7deg,transparent 7deg 24deg);-webkit-mask:radial-gradient(circle,#000 5%,transparent 68%);mask:radial-gradient(circle,#000 5%,transparent 68%)}
+.box{position:absolute;left:.5em;bottom:0;width:10em;height:6.6em;border-radius:.3em .3em .6em .6em;overflow:hidden;
+background:linear-gradient(90deg,#c92c5e,#ff5c8a 40%,#ff7aa2 55%,#c92c5e);box-shadow:inset 0 -1em 1.2em #0003}
+.box::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.8em;transform:translateX(-50%);background:linear-gradient(90deg,#e0a21c,var(--gold),#e0a21c)}
+.box::after{content:"";position:absolute;left:.8em;top:.8em;width:.5em;height:4em;border-radius:1em;background:#fff5;transform:rotate(8deg)}
+.light{position:absolute;inset:0;background:radial-gradient(circle at 50% 0,#fff8c8,transparent 75%);opacity:0;transition:opacity .6s}
+.lid{position:absolute;left:0;bottom:6.5em;width:11em;height:2.6em;border-radius:.4em;z-index:2;background:linear-gradient(90deg,#e8457a,#ff7aa2 50%,#e8457a);
+box-shadow:0 .3em .6em #0004;transition:transform .9s cubic-bezier(.3,1.7,.5,1)}
+.lid::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.8em;transform:translateX(-50%);background:linear-gradient(90deg,#e0a21c,var(--gold),#e0a21c)}
+.bow{position:absolute;left:50%;top:-1.5em;width:0;height:0;animation:wig 2.2s ease-in-out infinite}
+.bow::before,.bow::after{content:"";position:absolute;top:0;width:2.6em;height:1.9em;border:.55em solid var(--gold);border-radius:60% 60% 10% 60%}
+.bow::before{right:-.2em;transform:rotate(-12deg)}.bow::after{left:-.2em;transform:scaleX(-1) rotate(-12deg)}
+.ph{position:absolute;left:50%;top:1em;font-size:3em;opacity:0;z-index:1;pointer-events:none}
+.sp{position:absolute;color:var(--gold);font-style:normal;animation:tw 1.8s ease-in-out infinite;pointer-events:none}
+.gift.shake{animation:shake .65s ease-in-out}
+.gift.open{animation:none}
+.gift.open .lid{transform:translate(4em,-8em) rotate(32deg)}
+.gift.open .bow{animation:none}
+.gift.open .light{opacity:1}
+.gift.open .rays{animation:spin 6s linear infinite,rin .8s forwards}
+.gift.open .ph{animation:up 1.6s ease-out forwards}
+@keyframes bob{50%{transform:translateY(-.6em) rotate(-1.5deg)}}
+@keyframes shake{0%,100%{transform:none}15%{transform:translateX(-.5em) rotate(-7deg)}30%{transform:translateX(.5em) rotate(7deg)}45%{transform:translateX(-.4em) rotate(-5deg) scale(1.05)}60%{transform:translateX(.4em) rotate(5deg) scale(1.08)}80%{transform:scale(1.1,.94)}}
+@keyframes wig{50%{transform:rotate(6deg)}}
+@keyframes tw{0%,100%{opacity:.2;transform:scale(.5) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(40deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rin{to{opacity:1}}
+@keyframes up{0%{transform:translate(-50%,0) scale(.3);opacity:1}100%{transform:translate(-50%,-6em) scale(1.5);opacity:0}}
+
+/* ===== Kue ===== */
+.cake{position:absolute;z-index:1;left:50%;bottom:0;transform:translateX(-50%);transform-origin:50% 100%;font-size:clamp(11px,3.6vw,18px);width:26em;height:19em;animation:sway 3.2s ease-in-out 2.4s infinite}
+.cake::before{content:"";position:absolute;left:-8em;right:-8em;bottom:8em;height:20em;background:radial-gradient(circle at 50% 70%,#ffb02066,transparent 65%);animation:glow 2.4s ease-in-out infinite alternate;pointer-events:none}
+.plate{position:absolute;left:0;bottom:0;width:26em;height:2.2em;border-radius:50%;background:radial-gradient(#fff,#d9c9e6);box-shadow:0 .5em 1.5em #0008}
+.tier{position:absolute;left:50%;transform:translateX(-50%);border-radius:.9em .9em .5em .5em;animation:drop .9s cubic-bezier(.3,1.5,.5,1) both,drift 7s linear infinite;
+background:radial-gradient(circle,#ffffff77 .22em,transparent .27em) 0 0/1.6em 1.6em,linear-gradient(90deg,var(--c1),var(--c2) 45%,var(--c1))}
+.tier::before{content:"";position:absolute;left:0;right:0;top:0;height:2.6em;border-radius:.9em .9em 0 0;
+background:radial-gradient(circle at 50% 1.4em,#fffaf2 .85em,transparent .9em) 0 0/2.2em 2.6em repeat-x,linear-gradient(#fffaf2,#fffaf2) 0 0/100% 1.4em no-repeat}
+.t1{--c1:#e8447b;--c2:#ff7ba3;width:22em;height:6.6em;bottom:1.4em}
+.t2{--c1:#b78be6;--c2:#d9bdfa;width:16em;height:5.8em;bottom:8em;animation-delay:.35s,0s}
+.t3{--c1:#f06a98;--c2:#ff9cba;width:10.5em;height:5.2em;bottom:13.8em;animation-delay:.7s,0s}
+.cherry{position:absolute;bottom:18.9em;width:1.3em;height:1.3em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a8a,#c4122f 60%);animation:hop 1.6s ease-in-out infinite,pop .5s 1.2s both}
+.candle{position:absolute;bottom:18.9em;width:.75em;height:3em;border-radius:.2em;background:repeating-linear-gradient(135deg,#fff 0 .5em,var(--sky) .5em 1em);animation:pop .5s 1.3s both}
+.candle::before{content:"";position:absolute;left:50%;top:-1.5em;width:.9em;height:1.4em;transform:translateX(-50%);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;
+background:radial-gradient(ellipse at 50% 70%,#fff6b0,#ffb020 55%,#ff5a1f);box-shadow:0 0 1.2em .5em #ffb02088;transform-origin:50% 100%;animation:flick .5s ease-in-out infinite alternate;transition:opacity .4s}
+.candle::after{content:"";position:absolute;left:50%;top:-1.6em;width:.5em;height:1em;margin-left:-.25em;border-radius:50%;background:#fffc;filter:blur(.15em);opacity:0}
+.candle:nth-of-type(2n)::before{animation-delay:-.25s}
+.out .candle::before{opacity:0;animation:none}
+.out .candle::after{animation:smoke 2.2s ease-out forwards}
+.cake .sp{font-size:1.4em;color:#fff}
+@keyframes sway{50%{transform:translateX(-50%) scale(1.02,.985)}}
+@keyframes glow{to{opacity:.55;transform:scale(1.08)}}
+@keyframes drop{from{transform:translateX(-50%) translateY(-18em);opacity:0}60%{opacity:1}to{transform:translateX(-50%)}}
+@keyframes drift{to{background-position:1.6em 0,0 0}}
+@keyframes pop{from{opacity:0;transform:scale(0) translateY(-2em)}to{opacity:1;transform:none}}
+@keyframes hop{50%{transform:translateY(-.35em)}}
+@keyframes flick{from{transform:translateX(-50%) scale(1,1) rotate(-3deg)}to{transform:translateX(-50%) scale(.9,1.12) rotate(3deg)}}
+@keyframes smoke{0%{opacity:.8;transform:translateY(0) scale(.6)}100%{opacity:0;transform:translateY(-3em) scale(2)}}
+
+/* ===== Kartu hati ===== */
+.overlay{position:fixed;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;padding:1rem;background:#150720cc;opacity:0;pointer-events:none;transition:opacity .4s}
+.overlay.show{opacity:1;pointer-events:auto}
+.stack{display:flex;flex-direction:column;align-items:center;gap:.9rem;width:min(94vw,400px)}
+.heartcard{position:relative;width:100%;aspect-ratio:200/180;transform:scale(.1) rotate(-12deg);transition:transform .8s cubic-bezier(.3,1.6,.5,1);filter:drop-shadow(0 14px 34px #ff5c8a99)}
+.show .heartcard{transform:none;animation:hb 1.4s ease-in-out .8s infinite}
+.heartcard svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.inner{position:absolute;left:21%;right:21%;top:19%;height:48%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;text-align:center;color:#7a1f45}
+.emoji{font-size:1.7rem;animation:beat 1.1s ease-in-out infinite}
+.msg{font-family:var(--ff-h);font-style:italic;font-weight:600;font-size:clamp(.9rem,3.9vw,1.12rem);line-height:1.35}
+.dots{display:flex;gap:.4rem}
+.dots i{width:.5rem;height:.5rem;border-radius:50%;background:#ffffff55;transition:.3s}
+.dots i.on{background:var(--pink);transform:scale(1.5)}
+.btn{font:700 1rem var(--ff-b);border:0;border-radius:2rem;padding:.7rem 1.6rem;color:#fff;background:var(--pink);cursor:pointer;box-shadow:0 4px 0 #b52a58}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #b52a58}
+.btn:focus-visible,.x:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.x{position:absolute;right:.8rem;top:.6rem;border:0;background:none;font-size:2rem;color:#fff;cursor:pointer}
+@keyframes hb{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes beat{0%,40%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1.05)}}
+
+/* ===== Adegan akhir: tangan hati ===== */
+.final{position:fixed;inset:0;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;padding:1rem;
+background:radial-gradient(circle at 50% 40%,#6a1b4d,#1d0b2e 75%);opacity:0;pointer-events:none;transition:opacity .6s;overflow:hidden}
+.final.show{opacity:1;pointer-events:auto}
+.hands{position:relative;width:min(88vw,360px);aspect-ratio:300/240}
+.hands>svg{position:absolute;overflow:visible}
+.core{inset:0;width:100%;height:100%;transform:scale(0);filter:drop-shadow(0 0 22px #ff3d73)}
+.hl,.hr{top:0;height:100%;width:50%;filter:drop-shadow(0 6px 10px #0006)}
+.hl{left:0;transform:translateX(-120vw) rotate(-25deg)}
+.hr{right:0;transform:translateX(120vw) rotate(25deg)}
+.final.show .hl{animation:inL 1.7s cubic-bezier(.2,.85,.25,1) .3s forwards}
+.final.show .hr{animation:inR 1.7s cubic-bezier(.2,.85,.25,1) .3s forwards}
+.final.show .core{animation:grow .8s cubic-bezier(.3,1.6,.5,1) 1.9s forwards,beatc 1.1s ease-in-out 2.8s infinite}
+.final h2{font-family:var(--ff-h);font-style:italic;font-weight:800;font-size:clamp(1.5rem,6.5vw,2.4rem);text-align:center;text-shadow:0 0 18px #ff5c8a;opacity:0}
+.final .btn{opacity:0}
+.final.show h2{animation:fup .9s ease 2.3s forwards}
+.final.show .btn{animation:fup .9s ease 3s forwards}
+@keyframes inL{0%{transform:translateX(-120vw) rotate(-25deg)}70%{transform:translateX(6%) rotate(4deg)}85%{transform:translateX(-1%)}100%{transform:none}}
+@keyframes inR{0%{transform:translateX(120vw) rotate(25deg)}70%{transform:translateX(-6%) rotate(-4deg)}85%{transform:translateX(1%)}100%{transform:none}}
+@keyframes grow{to{transform:scale(1)}}
+@keyframes beatc{0%,100%{transform:scale(1)}20%{transform:scale(1.1)}40%{transform:scale(1.02)}}
+@keyframes fup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ===== Hati melayang ===== */
+.hearts{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.h{position:absolute;line-height:1;opacity:0;animation:rise var(--d) linear forwards}
+.hp{position:fixed;z-index:9;pointer-events:none;line-height:1;opacity:0;animation:fly var(--d) cubic-bezier(.2,.8,.4,1) forwards}
+@keyframes rise{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:.85}100%{transform:translate(var(--dx),-110vh) rotate(var(--r)) scale(1.1);opacity:0}}
+@keyframes fly{0%{transform:translate(0,0) scale(.3);opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(1);opacity:0}}
+canvas{position:fixed;inset:0;z-index:10;pointer-events:none}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}.hearts{display:none}}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+<main>
+  <h1>Selamat Ulang Tahun 💖<input class="who" id="who" value="Sayang" maxlength="18" aria-label="Nama yang berulang tahun"></h1>
+  <button class="gift" id="gift" aria-label="Buka kado">
+    <span class="rays"></span><span class="shadow"></span>
+    <span class="box"><span class="light"></span></span>
+    <span class="lid"><span class="bow"></span></span>
+    <span class="ph">❤️</span>
+    <i class="sp" style="left:-1.2em;top:1em">✦</i><i class="sp" style="right:-1em;top:-.5em;animation-delay:.6s">✦</i>
+    <i class="sp" style="left:.2em;top:-1.5em;animation-delay:1.1s;font-size:.7em">✦</i><i class="sp" style="right:-1.5em;top:5em;animation-delay:.3s;font-size:.8em">✦</i>
+  </button>
+  <p class="hint" id="hint">Ketuk kadonya, ada yang spesial buat kamu 🎁💕</p>
+</main>
+
+<div class="cake" id="cake" aria-hidden="true">
+  <div class="plate"></div>
+  <div class="tier t1"></div><div class="tier t2"></div><div class="tier t3"></div>
+  <div class="candle" style="left:9.4em;--sky:#6ec6ff"></div>
+  <div class="candle" style="left:12.6em;--sky:#ffd166"></div>
+  <div class="candle" style="left:15.8em;--sky:#7be0a5"></div>
+  <div class="cherry" style="left:7.4em"></div><div class="cherry" style="left:18.2em;animation-delay:.5s,1.2s"></div>
+  <i class="sp" style="left:-1em;top:3em">✦</i><i class="sp" style="right:-1em;top:1em;animation-delay:.7s">✦</i>
+  <i class="sp" style="left:2em;top:-2em;animation-delay:1.2s">✦</i><i class="sp" style="right:1.5em;top:7em;animation-delay:.4s">✦</i>
+</div>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Ucapan ulang tahun">
+  <button class="x" id="close" aria-label="Tutup">×</button>
+  <div class="stack">
+    <div class="heartcard">
+      <svg viewBox="0 0 200 180" aria-hidden="true"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7f9"/><stop offset="1" stop-color="#ffb8cf"/></linearGradient></defs>
+      <path d="M100 174C22 114-6 62 28 28 58 0 92 16 100 46 108 16 142 0 172 28 206 62 178 114 100 174Z" fill="url(#hg)" stroke="#ff5c8a" stroke-width="3"/>
+      <path d="M44 34C56 22 74 24 84 34" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/></svg>
+      <div class="inner"><div class="emoji" id="emoji">💖</div><p class="msg" id="msg"></p></div>
+    </div>
+    <div class="dots" id="dots"></div>
+    <button class="btn" id="next">Lanjut</button>
+  </div>
+</div>
+
+<div class="final" id="final" role="dialog" aria-label="Tangan membentuk hati">
+  <div class="hands">
+    <svg class="core" viewBox="0 20 300 240" aria-hidden="true"><defs><radialGradient id="cg" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="#ff8fb0"/><stop offset="1" stop-color="#e0194f"/></radialGradient></defs>
+      <path d="M150 236C72 178 60 118 80 92 98 70 138 80 150 102 162 80 202 70 220 92 240 118 228 178 150 236Z" fill="url(#cg)"/></svg>
+    <svg class="hl" id="hl" viewBox="0 20 150 240" aria-hidden="true"></svg>
+    <svg class="hr" id="hr" viewBox="0 20 150 240" aria-hidden="true"></svg>
+  </div>
+  <h2 id="fmsg"></h2>
+  <button class="btn" id="back">Lihat lagi 💞</button>
+</div>
+<canvas id="fx"></canvas>
+
+<script>
+const $=id=>document.getElementById(id);
+const gift=$('gift'),overlay=$('overlay'),msgEl=$('msg'),nextBtn=$('next'),emoji=$('emoji'),dots=$('dots'),cake=$('cake'),who=$('who'),fin=$('final');
+const name=()=>who.value.trim()||'Sayang';
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const pages=[
+ {e:'💖',t:()=>`Selamat ulang tahun, ${name()}! Hari ini milikmu, dan aku ikut bahagia sekali.`},
+ {e:'🥰',t:()=>'Terima kasih sudah hadir di hidupku. Bersamamu, hal biasa jadi istimewa.'},
+ {e:'💞',t:()=>'Aku sayang kamu setiap hari. Kamu rumah ternyaman untuk pulang.'},
+ {e:'🌹',t:()=>'Semoga sehat, banyak tawa, dan semua mimpimu terwujud. Aku selalu di sampingmu.'},
+ {e:'🎂',t:()=>'Sekarang pejamkan mata, buat satu permintaan, lalu tiup lilinnya ya!'}
+];
+let i=0;
+function render(){
+  msgEl.textContent=pages[i].t();emoji.textContent=pages[i].e;
+  dots.innerHTML=pages.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('');
+  nextBtn.textContent=i===pages.length-1?'Tiup lilin 🕯️':'Lanjut';
+}
+function openGift(){
+  if(gift.classList.contains('open')||gift.classList.contains('shake'))return;
+  $('hint').textContent='';gift.classList.add('shake');
+  setTimeout(()=>{gift.classList.remove('shake');gift.classList.add('open');
+    const r=gift.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height*.3,110);heartPop(r.left+r.width/2,r.top+r.height*.3,28)},650);
+  setTimeout(()=>{i=0;render();overlay.classList.add('show');nextBtn.focus()},2000);
+}
+gift.onclick=openGift;
+nextBtn.onclick=()=>{
+  if(i<pages.length-1){i++;render();heartPop(innerWidth/2,innerHeight*.45,10);return}
+  cake.classList.add('out');overlay.classList.remove('show');
+  burst(innerWidth/2,innerHeight*.6,150);heartPop(innerWidth/2,innerHeight*.6,30);
+  setTimeout(showFinal,1400);
+};
+function showFinal(){
+  $('fmsg').textContent=`Aku sayang kamu, ${name()} 💖`;
+  fin.classList.add('show');$('back').blur();
+  setTimeout(()=>{const r=$('hl').getBoundingClientRect();burst(innerWidth/2,r.top+r.height*.5,120);heartPop(innerWidth/2,r.top+r.height*.5,36)},2000);
+  setTimeout(()=>heartPop(innerWidth/2,innerHeight*.45,30),3200);
+}
+$('back').onclick=()=>{fin.classList.remove('show');cake.classList.remove('out');gift.classList.remove('open');$('hint').textContent='Ketuk kadonya lagi untuk membukanya 🎁'};
+$('close').onclick=()=>{overlay.classList.remove('show');gift.classList.remove('open');$('hint').textContent='Ketuk kadonya lagi untuk membaca ucapan 🎁'};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('show'))$('close').click()});
+
+/* Tangan kiri & kanan (kanan = cermin kiri) */
+const hand=`<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M48 190L-200 290" stroke="#d99a7a" stroke-width="64"/><path d="M48 190L-200 290" stroke="#ffd9bd" stroke-width="58"/>
+<path d="M-77 242L-500 410" stroke="#c92c5e" stroke-width="84" stroke-linecap="butt"/><path d="M-77 242L-500 410" stroke="#ff5c8a" stroke-width="78" stroke-linecap="butt"/>
+<path d="M-77 242L-95 249" stroke="#fff4e3" stroke-width="88" stroke-linecap="butt"/>
+<path id="p0" d="M40 160Q18 70 92 40Q128 32 148 62" stroke="#d99a7a" stroke-width="25"/><path d="M40 160Q18 70 92 40Q128 32 148 62" stroke="#ffd9bd" stroke-width="19"/>
+<path d="M58 150Q40 80 98 58Q128 52 148 78" stroke="#d99a7a" stroke-width="25"/><path d="M58 150Q40 80 98 58Q128 52 148 78" stroke="#ffe0c8" stroke-width="19"/>
+<path d="M62 160Q86 218 148 238" stroke="#d99a7a" stroke-width="29"/><path d="M62 160Q86 218 148 238" stroke="#ffd9bd" stroke-width="23"/>
+<ellipse cx="50" cy="165" rx="35" ry="43" fill="#d99a7a" stroke="none"/><ellipse cx="50" cy="165" rx="31" ry="39" fill="#ffd9bd" stroke="none"/>
+<ellipse cx="140" cy="60" rx="7" ry="4.5" fill="#ffeee9" stroke="none" transform="rotate(25 140 60)"/><ellipse cx="140" cy="76" rx="7" ry="4.5" fill="#ffeee9" stroke="none" transform="rotate(25 140 76)"/>
+<ellipse cx="140" cy="235" rx="7" ry="5" fill="#ffeee9" stroke="none" transform="rotate(20 140 235)"/></g>`;
+$('hl').innerHTML=hand.replace('id="p0"','');
+$('hr').innerHTML=`<g transform="translate(150 0) scale(-1 1)">${hand.replace('id="p0"','')}</g>`;
+
+/* Hati */
+const HE=['❤️','💖','💕','💗','💘','💝'];
+function floatHeart(){
+  if(still||document.hidden)return;
+  const el=document.createElement('span');el.className='h';el.textContent=HE[Math.random()*HE.length|0];
+  el.style.left=Math.random()*100+'%';el.style.bottom='-2rem';el.style.fontSize=(14+Math.random()*26)+'px';
+  el.style.setProperty('--dx',(Math.random()-.5)*120+'px');el.style.setProperty('--r',(Math.random()-.5)*50+'deg');
+  const d=6+Math.random()*6;el.style.setProperty('--d',d+'s');
+  $('hearts').appendChild(el);setTimeout(()=>el.remove(),d*1000);
+}
+setInterval(floatHeart,450);for(let k=0;k<6;k++)setTimeout(floatHeart,k*150);
+function heartPop(x,y,n){
+  if(still)return;
+  for(let k=0;k<n;k++){const el=document.createElement('span');el.className='hp';el.textContent=HE[k%HE.length];
+    const a=Math.random()*Math.PI*2,dist=90+Math.random()*200,d=1.4+Math.random()*1.2;
+    el.style.left=x+'px';el.style.top=y+'px';el.style.fontSize=(16+Math.random()*22)+'px';
+    el.style.setProperty('--dx',Math.cos(a)*dist+'px');el.style.setProperty('--dy',Math.sin(a)*dist-80+'px');
+    el.style.setProperty('--r',(Math.random()-.5)*70+'deg');el.style.setProperty('--d',d+'s');
+    document.body.appendChild(el);setTimeout(()=>el.remove(),d*1000);}
+}
+
+/* Confetti */
+const cv=$('fx'),cx=cv.getContext('2d');let P=[],run=false;
+function fit(){cv.width=innerWidth;cv.height=innerHeight}fit();addEventListener('resize',fit);
+function burst(x,y,n){
+  if(still)return;
+  const col=['#ff5c8a','#ffc94d','#6ec6ff','#7be0a5','#d9bdfa','#fff'];
+  for(let k=0;k<n;k++){const a=Math.random()*Math.PI*2,s=4+Math.random()*9;
+    P.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,w:5+Math.random()*6,h:3+Math.random()*5,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:col[k%col.length],l:140+Math.random()*60})}
+  if(!run){run=true;requestAnimationFrame(tick)}
+}
+function tick(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  P=P.filter(p=>p.l-->0&&p.y<cv.height+20);
+  for(const p of P){p.vx*=.985;p.vy+=.25;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.min(1,p.l/40);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()}
+  if(P.length)requestAnimationFrame(tick);else run=false;
+}
+</script>
+</body>
+</html>
